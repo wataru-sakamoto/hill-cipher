@@ -15,3 +15,12 @@ class HillCipher:
         """
         self.key = self._generate_invertible_matrix(self.block_size)
         print("Generated encryption key (matrix):\n", self.key)
+        
+    def set_key(self, key):
+        """
+        Manually set the key for this instance.
+        :param key: Encryption key (matrix)
+        """
+        self.key = np.array(key)
+        if not self._is_invertible(self.key):
+            raise ValueError("The provided key is not an invertible matrix.")
