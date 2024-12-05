@@ -34,3 +34,14 @@ class HillCipher:
         if self.key is None:
             raise ValueError("Encryption key is not set.")
         return self._process_text(plaintext, self.key)
+
+    def decrypt(self, ciphertext):
+        """
+        Decrypt ciphertext using the instance's key.
+        :param ciphertext: Text to be decrypted
+        :return: Decrypted plaintext
+        """
+        if self.key is None:
+            raise ValueError("Encryption key is not set.")
+        inv_key = self._mod_inverse_matrix(self.key)
+        return self._process_text(ciphertext, inv_key)
