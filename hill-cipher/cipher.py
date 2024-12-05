@@ -24,3 +24,13 @@ class HillCipher:
         self.key = np.array(key)
         if not self._is_invertible(self.key):
             raise ValueError("The provided key is not an invertible matrix.")
+
+    def encrypt(self, plaintext):
+        """
+        Encrypt plaintext using the instance's key.
+        :param plaintext: Text to be encrypted
+        :return: Ciphertext
+        """
+        if self.key is None:
+            raise ValueError("Encryption key is not set.")
+        return self._process_text(plaintext, self.key)
