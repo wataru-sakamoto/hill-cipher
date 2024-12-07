@@ -54,3 +54,13 @@ class HillCipher:
         :return: Invertible matrix
         """
         return cls._generate_invertible_matrix(block_size)
+
+    @classmethod
+    def encrypt(cls, plaintext, key):
+        """
+        Class method: Encrypt plaintext using the provided key.
+        :param plaintext: Text to be encrypted
+        :param key: Encryption key (matrix)
+        :return: Ciphertext
+        """
+        return cls._process_text(plaintext, key)
