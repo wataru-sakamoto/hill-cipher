@@ -45,3 +45,12 @@ class HillCipher:
             raise ValueError("Encryption key is not set.")
         inv_key = self._mod_inverse_matrix(self.key)
         return self._process_text(ciphertext, inv_key)
+
+    @classmethod
+    def generate_key(cls, block_size):
+        """
+        Class method: Generate an invertible matrix of the specified block size.
+        :param block_size: Size of the matrix
+        :return: Invertible matrix
+        """
+        return cls._generate_invertible_matrix(block_size)
