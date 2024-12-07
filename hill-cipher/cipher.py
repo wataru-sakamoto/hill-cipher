@@ -64,3 +64,14 @@ class HillCipher:
         :return: Ciphertext
         """
         return cls._process_text(plaintext, key)
+
+    @classmethod
+    def decrypt(cls, ciphertext, key):
+        """
+        Class method: Decrypt ciphertext using the provided key.
+        :param ciphertext: Text to be decrypted
+        :param key: Encryption key (matrix)
+        :return: Decrypted plaintext
+        """
+        inv_key = cls._mod_inverse_matrix(key)
+        return cls._process_text(ciphertext, inv_key)
