@@ -131,3 +131,25 @@ class HillCipher:
             result_vector = np.dot(matrix, vector) % 26
             result_blocks.append(''.join(chr(c + 65) for c in result_vector))
         return ''.join(result_blocks)
+
+# Example usage
+if __name__ == "__main__":
+    # Using class methods
+    block_size = 2
+    key = HillCipher.generate_key(block_size)  # Generate key using class method
+    print("Generated key (class method):\n", key)
+
+    plaintext = "HELLO"
+    ciphertext = HillCipher.encrypt(plaintext, key)  # Encrypt using class method
+    print("Ciphertext (class method):", ciphertext)
+
+    decrypted = HillCipher.decrypt(ciphertext, key)  # Decrypt using class method
+    print("Decrypted text (class method):", decrypted)
+
+    # Using instance methods
+    cipher = HillCipher(block_size=2)
+    cipher.generate_key()  # Generate key using instance method
+    ciphertext_instance = cipher.encrypt(plaintext)  # Encrypt using instance method
+    print("Ciphertext (instance method):", ciphertext_instance)
+    decrypted_instance = cipher.decrypt(ciphertext_instance)  # Decrypt using instance method
+    print("Decrypted text (instance method):", decrypted_instance)
