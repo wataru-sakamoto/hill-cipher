@@ -87,3 +87,14 @@ class HillCipher:
             matrix = np.random.randint(1, 10, (size, size))
             if HillCipher._is_invertible(matrix):
                 return matrix
+
+    @staticmethod
+    def _is_invertible(matrix, mod=26):
+        """
+        Check if a matrix is invertible modulo 26.
+        :param matrix: Matrix to check
+        :param mod: Modulus value (default: 26)
+        :return: True if invertible, False otherwise
+        """
+        det = int(np.round(np.linalg.det(matrix)))
+        return np.gcd(det, mod) == 1
