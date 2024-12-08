@@ -111,3 +111,23 @@ class HillCipher:
         det_inv = pow(det, -1, mod)  # Modular inverse of the determinant
         adjugate = np.round(det * np.linalg.inv(matrix)).astype(int) % mod  # Adjugate matrix
         return (det_inv * adjugate) % mod
+
+    @staticmethod
+    def _process_text(text, matrix):
+        """
+        Process plaintext or ciphertext in blocks.
+        :param text: Text to process
+        :param matrix: Matrix to use for processing
+        :return: Processed text
+        """
+        block_size = matrix.shape[0]
+        text = text.upper().replace(" ", "")  # Convert to uppercase and remove spaces
+        padding_length = (-len(text)) % block_size
+        text += 'X' * padding_length  # Add padding if needed
+        blocks = [text[i:i + block_size] for i in range(0, len(text), block_size)]
+        result_blocks = []
+        for block in blocks:
+            vector = np.array([ord(char) - 65 for char in block])  # Convert characters to numbers (A=0, B=1, ...)
+            result_vector = np.dot(matrix, vector) % 26
+            result_blocks.append(''.join(chr(c + 65) for c in result_vector))
+        return ''.join(result_blocks)
