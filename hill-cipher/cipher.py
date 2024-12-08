@@ -75,3 +75,15 @@ class HillCipher:
         """
         inv_key = cls._mod_inverse_matrix(key)
         return cls._process_text(ciphertext, inv_key)
+
+    @staticmethod
+    def _generate_invertible_matrix(size):
+        """
+        Generate an invertible matrix of the specified size.
+        :param size: Size of the matrix
+        :return: Invertible matrix
+        """
+        while True:
+            matrix = np.random.randint(1, 10, (size, size))
+            if HillCipher._is_invertible(matrix):
+                return matrix
