@@ -98,3 +98,16 @@ class HillCipher:
         """
         det = int(np.round(np.linalg.det(matrix)))
         return np.gcd(det, mod) == 1
+
+    @staticmethod
+    def _mod_inverse_matrix(matrix, mod=26):
+        """
+        Compute the modular inverse of a matrix.
+        :param matrix: Original matrix
+        :param mod: Modulus value
+        :return: Modular inverse of the matrix
+        """
+        det = int(np.round(np.linalg.det(matrix)))  # Determinant of the matrix
+        det_inv = pow(det, -1, mod)  # Modular inverse of the determinant
+        adjugate = np.round(det * np.linalg.inv(matrix)).astype(int) % mod  # Adjugate matrix
+        return (det_inv * adjugate) % mod
