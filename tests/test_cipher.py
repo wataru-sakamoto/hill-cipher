@@ -18,3 +18,12 @@ class TestHillCipher(unittest.TestCase):
         self.assertIsNotNone(key, "Key should not be None")
         self.assertEqual(key.shape, (2, 2), "Key should be a 2x2 matrix")
         self.assertTrue(HillCipher._is_invertible(key), "Key should be invertible")
+
+    def test_encryption_and_decryption(self):
+        """
+        Test that encryption followed by decryption returns the original text.
+        """
+        plaintext = "HELLO"
+        ciphertext = self.cipher.encrypt(plaintext)
+        decrypted = self.cipher.decrypt(ciphertext)
+        self.assertEqual(decrypted.strip('X'), plaintext, "Decrypted text should match the original plaintext")
