@@ -27,3 +27,14 @@ class TestHillCipher(unittest.TestCase):
         ciphertext = self.cipher.encrypt(plaintext)
         decrypted = self.cipher.decrypt(ciphertext)
         self.assertEqual(decrypted.strip('X'), plaintext, "Decrypted text should match the original plaintext")
+
+    def test_manual_key_set(self):
+        """
+        Test setting a manual key and using it for encryption and decryption.
+        """
+        key = np.array([[3, 3], [2, 5]])
+        self.cipher.set_key(key)
+        plaintext = "TEST"
+        ciphertext = self.cipher.encrypt(plaintext)
+        decrypted = self.cipher.decrypt(ciphertext)
+        self.assertEqual(decrypted.strip('X'), plaintext, "Decrypted text should match the original plaintext")
