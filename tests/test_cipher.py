@@ -46,3 +46,11 @@ class TestHillCipher(unittest.TestCase):
         invalid_key = np.array([[1, 2], [3, 6]])  # Non-invertible matrix
         with self.assertRaises(ValueError):
             self.cipher.set_key(invalid_key)
+
+    def test_invalid_text_encryption(self):
+        """
+        Test that encrypting non-alphabetic text raises an error.
+        """
+        invalid_text = "12345"
+        with self.assertRaises(ValueError):
+            self.cipher.encrypt(invalid_text)
