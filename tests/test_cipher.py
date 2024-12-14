@@ -38,3 +38,11 @@ class TestHillCipher(unittest.TestCase):
         ciphertext = self.cipher.encrypt(plaintext)
         decrypted = self.cipher.decrypt(ciphertext)
         self.assertEqual(decrypted.strip('X'), plaintext, "Decrypted text should match the original plaintext")
+
+    def test_invalid_key_set(self):
+        """
+        Test that setting an invalid key raises an error.
+        """
+        invalid_key = np.array([[1, 2], [3, 6]])  # Non-invertible matrix
+        with self.assertRaises(ValueError):
+            self.cipher.set_key(invalid_key)
