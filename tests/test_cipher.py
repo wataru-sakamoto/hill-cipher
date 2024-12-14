@@ -54,3 +54,6 @@ class TestHillCipher(unittest.TestCase):
         invalid_text = "12345"
         with self.assertRaises(ValueError):
             self.cipher.encrypt(invalid_text)
+
+if __name__ == '__main__':
+    unittest.main()
