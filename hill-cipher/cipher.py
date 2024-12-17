@@ -131,6 +131,51 @@ class HillCipher:
             result_vector = np.dot(matrix, vector) % 26
             result_blocks.append(''.join(chr(c + 65) for c in result_vector))
         return ''.join(result_blocks)
+    
+    def explain_encryption(self, plaintext):
+        """
+        Explain the encryption process step by step.
+        :param plaintext: The plaintext to encrypt.
+        :return: The resulting ciphertext.
+        """
+        if self.key is None:
+            raise ValueError("Encryption key is not set.")
+        
+        print("=== Hill Cipher Encryption Process ===")
+        
+        # Step 1: Preprocess the plaintext
+        print("\nStep 1: Convert plaintext to uppercase and remove spaces.")
+        text = plaintext.upper().replace(" ", "")
+        print(f"Processed plaintext: {text}")
+
+        # Step 2: Add padding if necessary
+        block_size = self.key.shape[0]
+        padding_length = (-len(text)) % block_size
+        text += 'X' * padding_length
+        print(f"After padding (block size = {block_size}): {text}")
+        
+        # Step 3: Break plaintext into blocks
+        print("\nStep 2: Divide plaintext into blocks of size:", block_size)
+        blocks = [text[i:i + block_size] for i in range(0, len(text), block_size)]
+        print(f"Blocks: {blocks}")
+
+        # Step 4: Convert each block to a vector and apply matrix multiplication
+        print("\nStep 3: Convert each block to a numerical vector and apply key matrix multiplication.")
+        result_blocks = []
+        for block in blocks:
+            vector = [ord(char) - 65 for char in block]  # Convert letters to numbers
+            print(f"\nBlock '{block}' as vector: {vector}")
+            result_vector = np.dot(self.key, vector) % 26
+            print(f"Resulting vector after key multiplication: {result_vector}")
+            encrypted_block = ''.join(chr(num + 65) for num in result_vector)
+            print(f"Encrypted block: {encrypted_block}")
+            result_blocks.append(encrypted_block)
+        
+        # Step 5: Combine the encrypted blocks into the final ciphertext
+        ciphertext = ''.join(result_blocks)
+        print("\nStep 4: Combine all encrypted blocks to form the ciphertext.")
+        print(f"Ciphertext: {ciphertext}")
+        return ciphertext
 
 # Example usage
 if __name__ == "__main__":
