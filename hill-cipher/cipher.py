@@ -177,6 +177,47 @@ class HillCipher:
         print(f"Ciphertext: {ciphertext}")
         return ciphertext
 
+    def explain_decryption(self, ciphertext):
+        """
+        Explain the decryption process step by step.
+        :param ciphertext: The ciphertext to decrypt.
+        :return: The resulting plaintext.
+        """
+        if self.key is None:
+            raise ValueError("Encryption key is not set.")
+        
+        print("=== Hill Cipher Decryption Process ===")
+
+        # Step 1: Calculate the inverse of the key matrix
+        print("\nStep 1: Calculate the modular inverse of the key matrix.")
+        inv_key = self._mod_inverse_matrix(self.key)
+        print(f"Inverse key matrix (mod 26):\n{inv_key}")
+
+        # Step 2: Divide ciphertext into blocks
+        block_size = self.key.shape[0]
+        print("\nStep 2: Divide ciphertext into blocks of size:", block_size)
+        blocks = [ciphertext[i:i + block_size] for i in range(0, len(ciphertext), block_size)]
+        print(f"Blocks: {blocks}")
+
+        # Step 3: Convert each block to a vector and apply inverse key multiplication
+        print("\nStep 3: Convert each block to a numerical vector and apply inverse key matrix multiplication.")
+        result_blocks = []
+        for block in blocks:
+            vector = [ord(char) - 65 for char in block]  # Convert letters to numbers
+            print(f"\nBlock '{block}' as vector: {vector}")
+            result_vector = np.dot(inv_key, vector) % 26
+            result_vector = np.round(result_vector).astype(int) % 26  # Ensure rounding and mod 26
+            print(f"Resulting vector after inverse key multiplication: {result_vector}")
+            decrypted_block = ''.join(chr(num + 65) for num in result_vector)
+            print(f"Decrypted block: {decrypted_block}")
+            result_blocks.append(decrypted_block)
+        
+        # Step 4: Combine the decrypted blocks into the final plaintext
+        plaintext = ''.join(result_blocks)
+        print("\nStep 4: Combine all decrypted blocks to form the plaintext.")
+        print(f"Plaintext: {plaintext}")
+        return plaintext
+
 # Example usage
 if __name__ == "__main__":
     # Using class methods
