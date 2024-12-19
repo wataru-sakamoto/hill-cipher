@@ -55,5 +55,15 @@ class TestHillCipher(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.cipher.encrypt(invalid_text)
 
+    def test_explain_encryption(self):
+        """
+        Test the explain_encryption method to ensure it runs without errors and produces a valid ciphertext.
+        """
+        plaintext = "HELLO"
+        print("\nRunning explain_encryption test...")
+        ciphertext = self.cipher.explain_encryption(plaintext)
+        self.assertIsInstance(ciphertext, str, "Ciphertext should be a string.")
+        self.assertGreater(len(ciphertext), 0, "Ciphertext should not be empty.")
+
 if __name__ == '__main__':
     unittest.main()
