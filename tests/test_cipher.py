@@ -65,5 +65,16 @@ class TestHillCipher(unittest.TestCase):
         self.assertIsInstance(ciphertext, str, "Ciphertext should be a string.")
         self.assertGreater(len(ciphertext), 0, "Ciphertext should not be empty.")
 
+    def test_explain_decryption(self):
+        """
+        Test the explain_decryption method to ensure it runs without errors and produces a valid plaintext.
+        """
+        plaintext = "HELLO"
+        ciphertext = self.cipher.encrypt(plaintext)
+        print("\nRunning explain_decryption test...")
+        decrypted = self.cipher.explain_decryption(ciphertext)
+        self.assertIsInstance(decrypted, str, "Decrypted text should be a string.")
+        self.assertEqual(decrypted.strip('X'), plaintext, "Decrypted text should match the original plaintext.")
+
 if __name__ == '__main__':
     unittest.main()
