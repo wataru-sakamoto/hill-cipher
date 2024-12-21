@@ -42,37 +42,45 @@ To install the library, follow these steps:
 If available, you can install the library from PyPI:
 ```bash
 pip install hill-cipher
-
+```
 ---
 
 ## Usage Examples
-
 Here are some examples of how to use the Hill Cipher library.
 
 ### Encrypt and Decrypt a Message
 ```python
 from hillcipher import HillCipher
+```
 
 # Create a HillCipher instance
+```python
 cipher = HillCipher(block_size=2)
 cipher.generate_key()
+```
 
 # Encrypt a plaintext
+```python
 plaintext = "HELLO"
 ciphertext = cipher.encrypt(plaintext)
 print("Ciphertext:", ciphertext)
+```
 
 # Decrypt the ciphertext
+```python
 decrypted_text = cipher.decrypt(ciphertext)
 print("Decrypted text:", decrypted_text)
+```
 
 # Visualize the Encryption Process
 ```python
 cipher.explain_encryption("HELLO")
+```
 
 # Visualize the Decryption Process
 ```python
 cipher.explain_decryption("CIPHERTEXT")
+```
 
 ---
 
@@ -110,6 +118,7 @@ To ensure the library works correctly, run the provided test suite.
 
 ```bash
 python -m unittest discover tests
+```
 
 ---
 
