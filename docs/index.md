@@ -53,31 +53,31 @@ Here are some examples of how to use the Hill Cipher library.
 from hillcipher import HillCipher
 ```
 
-# Create a HillCipher instance
+### Create a HillCipher instance
 ```python
 cipher = HillCipher(block_size=2)
 cipher.generate_key()
 ```
 
-# Encrypt a plaintext
+### Encrypt a plaintext
 ```python
 plaintext = "HELLO"
 ciphertext = cipher.encrypt(plaintext)
 print("Ciphertext:", ciphertext)
 ```
 
-# Decrypt the ciphertext
+### Decrypt the ciphertext
 ```python
 decrypted_text = cipher.decrypt(ciphertext)
 print("Decrypted text:", decrypted_text)
 ```
 
-# Visualize the Encryption Process
+### Visualize the Encryption Process
 ```python
 cipher.explain_encryption("HELLO")
 ```
 
-# Visualize the Decryption Process
+### Visualize the Decryption Process
 ```python
 cipher.explain_decryption("CIPHERTEXT")
 ```
