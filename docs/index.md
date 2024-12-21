@@ -42,3 +42,114 @@ To install the library, follow these steps:
 If available, you can install the library from PyPI:
 ```bash
 pip install hill-cipher
+
+---
+
+## Usage Examples
+
+Here are some examples of how to use the Hill Cipher library.
+
+### Encrypt and Decrypt a Message
+```python
+from hillcipher import HillCipher
+
+# Create a HillCipher instance
+cipher = HillCipher(block_size=2)
+cipher.generate_key()
+
+# Encrypt a plaintext
+plaintext = "HELLO"
+ciphertext = cipher.encrypt(plaintext)
+print("Ciphertext:", ciphertext)
+
+# Decrypt the ciphertext
+decrypted_text = cipher.decrypt(ciphertext)
+print("Decrypted text:", decrypted_text)
+
+# Visualize the Encryption Process
+```python
+cipher.explain_encryption("HELLO")
+
+# Visualize the Decryption Process
+```python
+cipher.explain_decryption("CIPHERTEXT")
+
+---
+
+## API Reference
+
+### HillCipher Class
+The HillCipher class provides the following methods:
+
+- **`__init__(block_size=2)`**:
+  Initializes the Hill Cipher with a specified block size.
+  
+- **`generate_key()`**:
+  Generates a random invertible matrix as the encryption key.
+
+- **`set_key(key)`**:
+  Manually sets a matrix as the encryption key. Raises an error if the matrix is not invertible.
+
+- **`encrypt(plaintext)`**:
+  Encrypts a plaintext message using the current key.
+
+- **`decrypt(ciphertext)`**:
+  Decrypts a ciphertext message using the current key.
+
+- **`explain_encryption(plaintext)`**:
+  Provides a detailed explanation of the encryption process.
+
+- **`explain_decryption(ciphertext)`**:
+  Provides a detailed explanation of the decryption process.
+
+---
+
+## Testing
+
+To ensure the library works correctly, run the provided test suite.
+
+```bash
+python -m unittest discover tests
+
+---
+
+## Educational Features
+
+The Hill Cipher library includes features specifically designed for learning:
+
+1. **Step-by-step Explanations**:
+   - Use `explain_encryption` and `explain_decryption` methods to understand the inner workings of the algorithm.
+
+2. **Custom Key Input**:
+   - Set your own encryption key matrix using the `set_key` method to explore how matrix properties affect encryption.
+
+---
+
+## Contributing
+
+We welcome contributions! Follow these steps to contribute:
+
+1. Fork the repository.
+
+2. Create a new branch for your feature or bug fix:
+    ```bash
+    git checkout -b feature-name
+    ```
+
+3. Make your changes and commit them with a descriptive message:
+    ```bash
+    git commit -m "Add feature description"
+    ```
+
+4. Push your changes:
+    ```bash
+    git push origin feature-name
+    ```
+
+5. Submit a pull request on GitHub with a detailed explanation of your changes.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](../LICENSE) file for more details.
