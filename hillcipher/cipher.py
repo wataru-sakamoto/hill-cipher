@@ -56,7 +56,7 @@ class HillCipher:
         return cls._generate_invertible_matrix(block_size)
 
     @classmethod
-    def encrypt(cls, plaintext, key):
+    def encrypt_with_key(cls, plaintext, key):
         """
         Class method: Encrypt plaintext using the provided key.
         :param plaintext: Text to be encrypted
@@ -66,7 +66,7 @@ class HillCipher:
         return cls._process_text(plaintext, key)
 
     @classmethod
-    def decrypt(cls, ciphertext, key):
+    def decrypt_with_key(cls, ciphertext, key):
         """
         Class method: Decrypt ciphertext using the provided key.
         :param ciphertext: Text to be decrypted
