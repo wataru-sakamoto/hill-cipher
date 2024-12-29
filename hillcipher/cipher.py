@@ -33,6 +33,8 @@ class HillCipher:
         """
         if self.key is None:
             raise ValueError("Encryption key is not set.")
+        if not plaintext.isalpha():
+            raise ValueError("Plaintext must contain only alphabetic characters.")
         return self._process_text(plaintext, self.key)
 
     def decrypt(self, ciphertext):
@@ -54,7 +56,7 @@ class HillCipher:
         :return: Invertible matrix
         """
         return cls._generate_invertible_matrix(block_size)
-
+    
     @classmethod
     def encrypt_with_key(cls, plaintext, key):
         """
@@ -63,6 +65,8 @@ class HillCipher:
         :param key: Encryption key (matrix)
         :return: Ciphertext
         """
+        if not plaintext.isalpha():
+            raise ValueError("Plaintext must contain only alphabetic characters.")
         return cls._process_text(plaintext, key)
 
     @classmethod
