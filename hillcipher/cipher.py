@@ -47,7 +47,7 @@ class HillCipher:
         return self._process_text(ciphertext, inv_key)
 
     @classmethod
-    def generate_key(cls, block_size):
+    def generate_key_matrix(cls, block_size):
         """
         Class method: Generate an invertible matrix of the specified block size.
         :param block_size: Size of the matrix
