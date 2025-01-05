@@ -31,7 +31,7 @@ To install the library, follow these steps:
 1. Clone the repository:
     ```bash
     git clone <repository_url>
-    cd hill-cipher
+    cd hillcipher
     ```
 2. Install the dependencies:
     ```bash
@@ -41,7 +41,7 @@ To install the library, follow these steps:
 ### Install via PyPI
 If available, you can install the library from PyPI:
 ```bash
-pip install hill-cipher
+pip install hill-cipher-for-educational-use
 ```
 ---
 
@@ -87,7 +87,7 @@ cipher.explain_decryption("CIPHERTEXT")
 ## API Reference
 
 ### HillCipher Class
-The HillCipher class provides the following methods:
+The HillCipher class mainly provides the following methods:
 
 - **`__init__(block_size=2)`**:
   Initializes the Hill Cipher with a specified block size.
