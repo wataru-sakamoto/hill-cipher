@@ -226,14 +226,14 @@ class HillCipher:
 if __name__ == "__main__":
     # Using class methods
     block_size = 2
-    key = HillCipher.generate_key(block_size)  # Generate key using class method
+    key = HillCipher.generate_key_matrix(block_size)  # Generate key using class method
     print("Generated key (class method):\n", key)
 
     plaintext = "HELLO"
-    ciphertext = HillCipher.encrypt(plaintext, key)  # Encrypt using class method
+    ciphertext = HillCipher.encrypt_with_key(plaintext, key)  # Encrypt using class method
     print("Ciphertext (class method):", ciphertext)
 
-    decrypted = HillCipher.decrypt(ciphertext, key)  # Decrypt using class method
+    decrypted = HillCipher.decrypt_with_key(ciphertext, key)  # Decrypt using class method
     print("Decrypted text (class method):", decrypted)
 
     # Using instance methods
